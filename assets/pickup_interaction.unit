@@ -1,0 +1,9 @@
+<unit type="wpn" slot="13">
+	<object file="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy"/>
+	<extensions>
+		<extension name="unit_data" class="ScriptUnitData"/>
+		<extension name="interaction" class="PickUpWeaponInteractionExt">
+			<var name="tweak_data" value="weapon_pickup"/>
+		</extension>
+	</extensions>
+</unit>

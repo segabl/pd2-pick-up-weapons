@@ -1,0 +1,4 @@
+{
+	"hud_int_pickup_weapon": "Hold $BTN_INTERACT; to pick up $WEAPON;",
+	"hud_action_pickup_weapon": "Picking up weapon"
+}

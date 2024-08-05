@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<mod>
+	<assets>
+		<file path="assets/pickup_interaction.unit" name="units/payday2/weapons/pickup_interaction.unit"/>
+	</assets>
+</mod>

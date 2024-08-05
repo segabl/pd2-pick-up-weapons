@@ -110,7 +110,8 @@ return {
 			"wpn_fps_upg_fl_ass_laser",
 			"wpn_fps_ass_g3_g_sniper",
 			"wpn_fps_ass_g3_s_sniper",
-			"wpn_fps_upg_o_spot"
+			"wpn_fps_ass_g3_body_rail",
+			"wpn_fps_upg_o_leupold"
 		}
 	},
 	m14 = {
@@ -128,7 +129,8 @@ return {
 			"wpn_fps_upg_fl_ass_laser",
 			"wpn_fps_ass_g3_g_sniper",
 			"wpn_fps_ass_g3_s_sniper",
-			"wpn_fps_upg_o_spot"
+			"wpn_fps_ass_g3_body_rail",
+			"wpn_fps_upg_o_leupold"
 		}
 	},
 	m249 = {

@@ -275,7 +275,19 @@ return {
 		}
 	},
 	sko12_conc = {
-		id = "sko12"
+		id = "sko12",
+		blueprint = {
+			"wpn_fps_sho_sko12_m_drum",
+			"wpn_fps_sho_sko12_body_upper",
+			"wpn_fps_sho_sko12_body_lower",
+			"wpn_fps_sho_sko12_s_adapter_short",
+			"wpn_fps_upg_m4_g_standard_vanilla",
+			"wpn_fps_sho_sko12_drag_handle",
+			"wpn_fps_sho_sko12_ns_default",
+			"wpn_upg_o_marksmansight_rear_vanilla",
+			"wpn_fps_sho_sko12_b_short",
+			"wpn_fps_sho_sko12_fg_standard"
+		}
 	},
 	sr2 = {
 		blueprint = {

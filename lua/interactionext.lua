@@ -13,7 +13,7 @@ end
 
 function PickUpWeaponInteractionExt:_add_string_macros(macros)
 	self.super._add_string_macros(self, macros)
-	macros.WEAPON = managers.localization:text(self.loc_name_id)
+	macros.WEAPON = managers.localization:text(self.weapon_data.localization_id)
 end
 
 function PickUpWeaponInteractionExt:interact(player)
@@ -32,9 +32,9 @@ function PickUpWeaponInteractionExt:interact(player)
 		end
 	end
 
-	PickUpWeapons._picked_up_weapon = true
-	player:inventory():add_unit_by_factory_name(self.factory_id, true, false, self.blueprint, self.cosmetics, texture_switches)
-	PickUpWeapons._picked_up_weapon = nil
+	PickUpWeapons._picked_up_weapon_data = self.weapon_data
+	player:inventory():add_unit_by_factory_name(self.weapon_data.factory_id, true, false, self.weapon_data.blueprint, self.weapon_data.cosmetics, texture_switches)
+	PickUpWeapons._picked_up_weapon_data = nil
 
 	if alive(self._unit:parent()) then
 		self._unit:parent():set_slot(0)

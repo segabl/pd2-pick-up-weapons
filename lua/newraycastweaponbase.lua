@@ -1,29 +1,25 @@
 Hooks:PreHook(NewRaycastWeaponBase, "assemble", "assemble_pickup_weapons", function(self)
-	self._picked_up_weapon = PickUpWeapons._picked_up_weapon
+	self._picked_up_weapon_data = PickUpWeapons._picked_up_weapon_data
 end)
 
 Hooks:PreHook(NewRaycastWeaponBase, "assemble_from_blueprint", "assemble_from_blueprint_pickup_weapons", function(self)
-	self._picked_up_weapon = PickUpWeapons._picked_up_weapon
+	self._picked_up_weapon_data = PickUpWeapons._picked_up_weapon_data
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "replenish", "replenish_pickup_weapons", function(self)
-	if not self._picked_up_weapon then
+	if not self._picked_up_weapon_data then
 		return
 	end
 
-	if not self._random_ammo_data then
-		self._random_ammo_data = {
-			total = math.round(self:get_ammo_max() * math.rand(0.2, 0.4)),
-			clip = math.round(self:get_ammo_max_per_clip() * math.rand(0, 1))
-		}
-	end
+	local total = math.round(self._picked_up_weapon_data.ammo.total * self:get_ammo_max())
+	local clip = math.round(self._picked_up_weapon_data.ammo.clip * self:get_ammo_remaining_in_clip())
 
-	self:set_ammo_total(math.min(self._random_ammo_data.total, self:get_ammo_max()))
-	self:set_ammo_remaining_in_clip(math.min(self._random_ammo_data.total, self._random_ammo_data.clip, self:get_ammo_remaining_in_clip()))
+	self:set_ammo_total(math.min(total, self:get_ammo_max()))
+	self:set_ammo_remaining_in_clip(math.min(total, clip, self:get_ammo_remaining_in_clip()))
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "clbk_assembly_complete", "clbk_assembly_complete_pickup_weapons", function(self)
-	if not self._picked_up_weapon then
+	if not self._picked_up_weapon_data then
 		return
 	end
 

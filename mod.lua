@@ -12,7 +12,7 @@ if not PickUpWeapons then
 
 		unit:interaction().weapon_data = {
 			factory_id = factory_id,
-			localization_id = tweak_data.weapon[weapon_id].name_id,
+			weapon_id = weapon_id,
 			blueprint = weapon_base._blueprint or weapon_data and weapon_data.blueprint,
 			offsets = not weapon_base._blueprint and weapon_data and weapon_data.offsets,
 			cosmetics = weapon_base._cosmetics or weapon_data and weapon_data.cosmetics,

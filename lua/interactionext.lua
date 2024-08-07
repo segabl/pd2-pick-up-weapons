@@ -13,7 +13,7 @@ end
 
 function PickUpWeaponInteractionExt:_add_string_macros(macros)
 	self.super._add_string_macros(self, macros)
-	macros.WEAPON = managers.localization:text(self.weapon_data.localization_id)
+	macros.WEAPON = managers.localization:text(tweak_data.weapon[self.weapon_data.weapon_id].name_id)
 end
 
 function PickUpWeaponInteractionExt:interact(player)
@@ -22,6 +22,12 @@ function PickUpWeaponInteractionExt:interact(player)
 	end
 
 	self.super.interact(self, player)
+
+	local selection_index = tweak_data.weapon[self.weapon_data.weapon_id].use_data.selection_index
+	local replace_weapon = player:inventory():unit_by_selection(selection_index)
+	if alive(replace_weapon) then
+		replace_weapon:base():on_disabled()
+	end
 
 	local texture_switches = {}
 	for _, part_id in pairs(self.weapon_data.blueprint or {}) do

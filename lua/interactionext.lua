@@ -24,7 +24,7 @@ function PickUpWeaponInteractionExt:interact(player)
 	self.super.interact(self, player)
 
 	local texture_switches = {}
-	for _, part_id in pairs(self.blueprint or {}) do
+	for _, part_id in pairs(self.weapon_data.blueprint or {}) do
 		if tweak_data.gui.part_texture_switches[part_id] then
 			texture_switches[part_id] = tweak_data.gui.part_texture_switches[part_id]
 		elseif tweak_data.weapon.factory.parts[part_id].texture_switch then

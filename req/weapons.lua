@@ -21,6 +21,23 @@ return {
 			"wpn_fps_ass_74_m_standard",
 			"wpn_fps_upg_o_t1micro",
 			"wpn_fps_ass_akm_body_upperreceiver_vanilla"
+		},
+		offsets = {
+			wpn_fps_upg_ns_ass_pbs1 = {
+				translation = Vector3(0, -6, 0)
+			},
+			wpn_fps_upg_o_t1micro = {
+				translation = Vector3(0, -6, 0)
+			}
+		}
+	},
+	asval = {
+		blueprint = {
+			"wpn_fps_ass_asval_b_standard",
+			"wpn_fps_ass_asval_body_standard",
+			"wpn_fps_ass_asval_fg_standard",
+			"wpn_fps_ass_asval_m_standard",
+			"wpn_fps_ass_asval_s_solid"
 		}
 	},
 	benelli = {
@@ -80,19 +97,24 @@ return {
 		id = "flamethrower_mk2"
 	},
 	g36 = {
-		cosmetics = {
-			pattern_scale = 2,
-			id = "color_anv_03",
-			quality = "mint",
-			color_index = 8
-		},
-		id = "g36",
 		blueprint = {
 			"wpn_fps_ass_g36_m_standard",
 			"wpn_fps_ass_g36_fg_k",
 			"wpn_fps_upg_o_eotech_xps",
 			"wpn_fps_upg_o_xpsg33_magnifier",
-			"wpn_fps_ass_g36_s_kv"
+			"wpn_fps_ass_g36_s_kv",
+			"wpn_fps_upg_fl_pis_tlr1"
+		},
+		offsets = {
+			wpn_fps_upg_fl_pis_tlr1 = {
+				translation = Vector3(-3, 5.5, -3)
+			}
+		},
+		cosmetics = {
+			pattern_scale = 2,
+			id = "color_anv_03",
+			quality = "mint",
+			color_index = 10
 		}
 	},
 	glock_18 = {
@@ -144,19 +166,29 @@ return {
 		}
 	},
 	m4 = {
+		id = "new_m4",
 		blueprint = {
 			"wpn_fps_upg_m4_g_standard_vanilla",
 			"wpn_fps_m4_lower_reciever",
 			"wpn_fps_m4_upper_reciever_round",
-			"wpn_fps_m4_uupg_b_medium_vanilla",
+			"wpn_fps_m4_uupg_b_short",
 			"wpn_fps_upg_m4_s_standard_vanilla",
 			"wpn_fps_m4_uupg_draghandle",
 			"wpn_fps_amcar_bolt_standard",
-			"wpn_fps_upg_ass_m4_fg_lvoa",
+			"wpn_fps_m16_fg_railed",
 			"wpn_fps_m4_uupg_m_std_vanilla",
-			"wpn_fps_upg_o_eotech"
+			"wpn_fps_upg_o_eotech",
+			"wpn_fps_upg_fl_ass_smg_sho_peqbox"
 		},
-		id = "new_m4"
+		offsets = {
+			wpn_fps_upg_m4_s_standard_vanilla = {
+				translation = Vector3(0, 5, 0)
+			},
+			wpn_fps_upg_fl_ass_smg_sho_peqbox = {
+				translation = Vector3(-2.8, 8.5, 2.8),
+				rotation = Rotation(0, 0, 270)
+			}
+		}
 	},
 	m4_yellow = {
 		id = "new_m4",
@@ -164,13 +196,23 @@ return {
 			"wpn_fps_upg_m4_g_standard_vanilla",
 			"wpn_fps_m4_lower_reciever",
 			"wpn_fps_m4_upper_reciever_round",
-			"wpn_fps_m4_uupg_b_medium_vanilla",
+			"wpn_fps_m4_uupg_b_short",
 			"wpn_fps_upg_m4_s_standard_vanilla",
 			"wpn_fps_m4_uupg_draghandle",
 			"wpn_fps_amcar_bolt_standard",
-			"wpn_fps_upg_ass_m4_fg_lvoa",
+			"wpn_fps_m16_fg_railed",
 			"wpn_fps_m4_uupg_m_std_vanilla",
-			"wpn_fps_upg_o_eotech"
+			"wpn_fps_upg_o_eotech",
+			"wpn_fps_upg_fl_ass_smg_sho_peqbox"
+		},
+		offsets = {
+			wpn_fps_upg_m4_s_standard_vanilla = {
+				translation = Vector3(0, 5, 0)
+			},
+			wpn_fps_upg_fl_ass_smg_sho_peqbox = {
+				translation = Vector3(-2.8, 8.5, 2.8),
+				rotation = Rotation(0, 0, 270)
+			}
 		},
 		cosmetics = {
 			id = "color_yellow",
@@ -209,7 +251,13 @@ return {
 			"wpn_fps_smg_mp5_body_mp5",
 			"wpn_fps_smg_mp5_m_std",
 			"wpn_fps_smg_mp5_fg_mp5a5",
-			"wpn_fps_smg_mp5_s_adjust"
+			"wpn_fps_smg_mp5_s_adjust",
+			"wpn_fps_upg_fl_pis_tlr1"
+		},
+		offsets = {
+			wpn_fps_upg_fl_pis_tlr1 = {
+				translation = Vector3(-2.3, 12.5, -2.5)
+			}
 		}
 	},
 	mp5_tactical = {
@@ -220,8 +268,22 @@ return {
 			"wpn_fps_upg_ns_ass_smg_small",
 			"wpn_fps_smg_mp5_m_straight",
 			"wpn_fps_upg_o_cmore",
-			"wpn_fps_smg_mp5_s_ring",
-			"wpn_fps_upg_fl_ass_smg_sho_peqbox"
+			"wpn_fps_smg_mp5_s_adjust",
+			"wpn_fps_upg_fl_ass_smg_sho_peqbox",
+			"wpn_fps_upg_fl_ass_smg_sho_surefire",
+			"wpn_fps_upg_vg_ass_smg_stubby"
+		},
+		offsets = {
+			wpn_fps_upg_fl_ass_smg_sho_surefire = {
+				translation = Vector3(-4.6, 2, 0),
+				rotation = Rotation(0, 0, 180)
+			},
+			wpn_fps_smg_mp5_s_adjust = {
+				translation = Vector3(0, 14, 0)
+			},
+			wpn_fps_upg_vg_ass_smg_stubby = {
+				translation = Vector3(0, -5, 0)
+			}
 		}
 	},
 	raging_bull = {
@@ -256,6 +318,12 @@ return {
 			"wpn_fps_ass_scar_b_medium",
 			"wpn_fps_upg_fl_ass_smg_sho_peqbox",
 			"wpn_fps_ass_scar_s_sniper"
+		},
+		offsets = {
+			wpn_fps_upg_fl_ass_smg_sho_peqbox = {
+				translation = Vector3(-2.2, 17.5, 3.2),
+				rotation = Rotation(0, 0, 270)
+			}
 		}
 	},
 	sg417 = {

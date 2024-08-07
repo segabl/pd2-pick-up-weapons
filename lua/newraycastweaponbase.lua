@@ -34,4 +34,20 @@ Hooks:PostHook(NewRaycastWeaponBase, "clbk_assembly_complete", "clbk_assembly_co
 			part_data.unit:base():set_color(colors[gadget_type])
 		end
 	end
+
+	if not self._picked_up_weapon_data.offsets then
+		return
+	end
+
+	for part_id, offset_data in pairs(self._picked_up_weapon_data.offsets) do
+		local part_unit = self._parts[part_id] and self._parts[part_id].unit
+		if alive(part_unit) then
+			if offset_data.translation then
+				part_unit:set_local_position(offset_data.translation)
+			end
+			if offset_data.rotation then
+				part_unit:set_local_rotation(offset_data.rotation)
+			end
+		end
+	end
 end)

@@ -1,4 +1,4 @@
-<unit type="wpn" slot="13">
+<unit type="wpn" slot="1">
 	<object file="units/payday2/weapons/wpn_upg_dummy/wpn_upg_dummy"/>
 	<extensions>
 		<extension name="unit_data" class="ScriptUnitData"/>

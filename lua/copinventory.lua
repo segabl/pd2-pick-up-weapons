@@ -4,6 +4,11 @@ Hooks:PreHook(CopInventory, "drop_weapon", "drop_weapon_pickup_weapons", functio
 		return
 	end
 
+	if not self._unit:character_damage():dead() then
+		log("[PickUpWeapons] Unit that's still alive dropped their weapon!")
+		return
+	end
+
 	local weapon_base = weapon:base()
 	local weapon_id = weapon_base.non_npc_name_id and weapon_base:non_npc_name_id() or weapon_base._name_id
 	weapon_id = weapon_id and weapon_id:gsub("_smg$", ""):gsub("_lmg$", ""):gsub("_ass$", "")

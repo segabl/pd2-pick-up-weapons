@@ -19,7 +19,7 @@ Hooks:PostHook(NewRaycastWeaponBase, "replenish", "replenish_pickup_weapons", fu
 end)
 
 Hooks:PostHook(NewRaycastWeaponBase, "clbk_assembly_complete", "clbk_assembly_complete_pickup_weapons", function(self)
-	if not self._picked_up_weapon_data then
+	if not self._picked_up_weapon_data or not self._picked_up_weapon_data.is_npc then
 		return
 	end
 

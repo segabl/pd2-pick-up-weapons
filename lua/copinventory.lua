@@ -16,6 +16,6 @@ Hooks:PreHook(CopInventory, "drop_weapon", "drop_weapon_pickup_weapons", functio
 	weapon_id = weapon_data and weapon_data.id or weapon_id
 	local factory_id = managers.weapon_factory:get_factory_id_by_weapon_id(weapon_id)
 	if factory_id then
-		PickUpWeapons:create_pickup(weapon, factory_id, weapon_id, weapon_data)
+		PickUpWeapons:create_pickup(weapon, factory_id, weapon_id, weapon_data, math.rand(0.2, 0.4), math.rand(0, 1), true)
 	end
 end)

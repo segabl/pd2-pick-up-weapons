@@ -26,6 +26,9 @@ function PickUpWeaponInteractionExt:interact(player)
 	local selection_index = tweak_data.weapon[self.weapon_data.weapon_id].use_data.selection_index
 	local replace_weapon = player:inventory():unit_by_selection(selection_index)
 	if alive(replace_weapon) then
+		if not replace_weapon:base()._picked_up_weapon_data or not replace_weapon:base()._picked_up_weapon_data.is_npc then
+			PickUpWeapons:create_player_pickup(replace_weapon)
+		end
 		replace_weapon:base():on_disabled()
 	end
 

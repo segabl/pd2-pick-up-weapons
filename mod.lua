@@ -5,6 +5,8 @@ if not PickUpWeapons then
 	PickUpWeapons.required = {}
 	PickUpWeapons.weapon_table = blt.vm.dofile(ModPath .. "req/weapons.lua")
 
+	Hooks:Register("PickUpWeaponsCreateWeaponTable")
+
 	function PickUpWeapons:create_pickup(weapon_unit, factory_id, weapon_id, weapon_data, total_ammo, clip_ammo, is_npc)
 		local weapon_base = weapon_unit:base()
 
@@ -49,10 +51,13 @@ if not PickUpWeapons then
 		end
 
 		local player_unit = managers.player:local_player()
-		local rot = player_unit:movement():m_head_rot()
-		local pos = player_unit:movement():m_head_pos() + rot:y() * 25
+		local rot = mrotation.copy(player_unit:movement():m_head_rot())
+		local pos = mvector3.copy(player_unit:movement():m_head_pos())
 
-		local unit = World:spawn_unit(weapon_ids, Vector3(), Rotation())
+		mrotation.set_yaw_pitch_roll(rot, rot:yaw() + math.random(-30, 30), rot:pitch(), rot:roll() + math.random(-90, 90))
+		mvector3.add_scaled(pos, player_unit:movement():m_head_fwd(), 25)
+
+		local unit = World:spawn_unit(weapon_ids, pos, rot)
 		unit:base():set_factory_data(weapon_base._factory_id)
 		unit:base():set_cosmetics_data(weapon_base._cosmetics)
 		unit:base():assemble_from_blueprint(weapon_base._factory_id, weapon_base._blueprint)
@@ -65,12 +70,9 @@ if not PickUpWeapons then
 			end
 		end)
 
-		local collider_data = HuskPlayerMovement.magazine_collisions.large_plastic
-		local collider_unit = World:spawn_unit(collider_data[1], pos, Rotation(rot:yaw() + math.random(45, 135), rot:pitch(), rot:roll()))
+		local collider_unit = World:spawn_unit(Idstring("units/payday2/weapons/box_collision/box_collision_dropped_weapon"), pos, rot)
 
-		collider_unit:link(collider_data[2], unit)
-		unit:set_local_position(Vector3(0, 0, 5))
-		unit:set_local_rotation(Rotation(-90, 0, 90))
+		collider_unit:link(Idstring("rp_box_collision_weapon"), unit)
 
 		unit:base():add_destroy_listener(unit:key(), function()
 			if alive(collider_unit) then
@@ -83,11 +85,8 @@ if not PickUpWeapons then
 
 		self:create_pickup(unit, weapon_base._factory_id, weapon_base._name_id, nil, total_ammo, clip_ammo)
 
-		collider_unit:push(1, rot:y():spread(20):with_z(math.random()) * 100)
+		collider_unit:push(1, player_unit:movement():m_head_fwd() * 1000)
 	end
-
-	Hooks:Register("PickUpWeaponsCreateWeaponTable")
-	Hooks:Call("PickUpWeaponsCreateWeaponTable", PickUpWeapons.weapon_table)
 
 	Hooks:Add("LocalizationManagerPostInit", "LocalizationManagerPostInitPickupWeapons", function(loc)
 		if HopLib then

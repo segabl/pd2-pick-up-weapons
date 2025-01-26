@@ -1,3 +1,5 @@
+Hooks:Call("PickUpWeaponsCreateWeaponTable", PickUpWeapons.weapon_table)
+
 Hooks:PreHook(CopInventory, "drop_weapon", "drop_weapon_pickup_weapons", function(self)
 	local weapon = self:equipped_unit()
 	if not alive(weapon) then

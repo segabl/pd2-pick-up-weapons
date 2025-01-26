@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <mod>
 	<assets>
+		<file path="assets/box_collision_dropped_weapon.cooked_physics" name="units/payday2/weapons/box_collision/box_collision_dropped_weapon.cooked_physics"/>
+		<file path="assets/box_collision_dropped_weapon.model" name="units/payday2/weapons/box_collision/box_collision_dropped_weapon.model"/>
+		<file path="assets/box_collision_dropped_weapon.object" name="units/payday2/weapons/box_collision/box_collision_dropped_weapon.object"/>
+		<file path="assets/box_collision_dropped_weapon.unit" name="units/payday2/weapons/box_collision/box_collision_dropped_weapon.unit"/>
 		<file path="assets/pickup_interaction.unit" name="units/payday2/weapons/pickup_interaction.unit"/>
 	</assets>
 </mod>

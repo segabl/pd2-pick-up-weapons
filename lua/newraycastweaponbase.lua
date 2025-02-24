@@ -51,3 +51,10 @@ Hooks:PostHook(NewRaycastWeaponBase, "clbk_assembly_complete", "clbk_assembly_co
 		end
 	end
 end)
+
+Hooks:PostHook(NewRaycastWeaponBase, "_get_spread", "_get_spread_weapons", function(self)
+	if self._picked_up_weapon_data and self._picked_up_weapon_data.is_npc and not self._rays then
+		local spread_x, spread_y = Hooks:GetReturn()
+		return spread_x * 0.65, spread_y * 0.65
+	end
+end)

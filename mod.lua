@@ -19,6 +19,7 @@ if not PickUpWeapons then
 			blueprint = weapon_base._blueprint or weapon_data and weapon_data.blueprint,
 			offsets = not weapon_base._blueprint and weapon_data and weapon_data.offsets,
 			cosmetics = weapon_base._cosmetics or weapon_data and weapon_data.cosmetics,
+			texture_switches = weapon_base._texture_switches or weapon_data and weapon_data.texture_switches,
 			ammo = {
 				total = total_ammo,
 				clip = clip_ammo
@@ -60,6 +61,7 @@ if not PickUpWeapons then
 		local unit = World:spawn_unit(weapon_ids, pos, rot)
 		unit:base():set_factory_data(weapon_base._factory_id)
 		unit:base():set_cosmetics_data(weapon_base._cosmetics)
+		unit:base():set_texture_switches(weapon_base._texture_switches)
 		unit:base():assemble_from_blueprint(weapon_base._factory_id, weapon_base._blueprint)
 		unit:base():check_npc()
 

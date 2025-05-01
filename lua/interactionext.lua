@@ -32,17 +32,22 @@ function PickUpWeaponInteractionExt:interact(player)
 		replace_weapon:base():on_disabled()
 	end
 
-	local texture_switches = {}
-	for _, part_id in pairs(self.weapon_data.blueprint or {}) do
-		if tweak_data.gui.part_texture_switches[part_id] then
-			texture_switches[part_id] = tweak_data.gui.part_texture_switches[part_id]
-		elseif tweak_data.weapon.factory.parts[part_id].texture_switch then
-			texture_switches[part_id] = tweak_data.gui.default_part_texture_switch
+	local blueprint = self.weapon_data.blueprint
+	local texture_switches = self.weapon_data.texture_switches
+	if not texture_switches then
+		texture_switches = {}
+		for _, part_id in pairs(blueprint or {}) do
+			if texture_switches[part_id] then
+			elseif tweak_data.gui.part_texture_switches[part_id] then
+				texture_switches[part_id] = tweak_data.gui.part_texture_switches[part_id]
+			elseif tweak_data.weapon.factory.parts[part_id].texture_switch then
+				texture_switches[part_id] = tweak_data.gui.default_part_texture_switch
+			end
 		end
 	end
 
 	PickUpWeapons._picked_up_weapon_data = self.weapon_data
-	player:inventory():add_unit_by_factory_name(self.weapon_data.factory_id, true, false, self.weapon_data.blueprint, self.weapon_data.cosmetics, texture_switches)
+	player:inventory():add_unit_by_factory_name(self.weapon_data.factory_id, true, false, blueprint, self.weapon_data.cosmetics, texture_switches)
 	PickUpWeapons._picked_up_weapon_data = nil
 
 	if alive(self._unit:parent()) then

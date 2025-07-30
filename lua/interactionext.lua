@@ -57,3 +57,12 @@ function PickUpWeaponInteractionExt:interact(player)
 		end
 	end
 end
+
+if Keepers and Keepers.is_unit_interactable then
+	local is_unit_interactable_original = Keepers.is_unit_interactable
+	function Keepers:is_unit_interactable(unit, ...)
+		if not alive(unit) or not unit:interaction() or unit:interaction().tweak_data ~= "weapon_pickup" then
+			return is_unit_interactable_original(self, unit, ...)
+		end
+	end
+end

@@ -52,10 +52,11 @@ if not PickUpWeapons then
 		end
 
 		local player_unit = managers.player:local_player()
-		local rot = mrotation.copy(player_unit:movement():m_head_rot())
+		local rot = Rotation()
 		local pos = mvector3.copy(player_unit:movement():m_head_pos())
 
-		mrotation.set_yaw_pitch_roll(rot, rot:yaw() + math.random(-30, 30), rot:pitch(), rot:roll() + math.random(-90, 90))
+		local head_rot = player_unit:movement():m_head_rot()
+		mrotation.set_yaw_pitch_roll(rot, head_rot:yaw() + math.random(-30, 30), head_rot:pitch(), head_rot:roll() + math.random(-90, 90))
 		mvector3.add_scaled(pos, player_unit:movement():m_head_fwd(), 25)
 
 		local unit = World:spawn_unit(weapon_ids, pos, rot)

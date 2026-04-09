@@ -215,9 +215,8 @@ return {
 			}
 		},
 		cosmetics = {
-			id = "color_yellow",
-			quality = "mint",
-			color_index = 6
+			id = "new_m4_bloodbath",
+			quality = "mint"
 		}
 	},
 	mac11 = {

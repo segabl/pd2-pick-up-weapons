@@ -47,6 +47,11 @@ if not PickUpWeapons then
 
 		local unit_ids = Idstring("unit")
 		local weapon_ids = Idstring(factory_weapon.unit)
+		if not DB:has(unit_ids, weapon_ids) then
+			log("[PickUpWeapons] Player weapon with invalid NPC counterpart (" .. weapon_base._factory_id .. ")!")
+			return
+		end
+
 		if not managers.dyn_resource:has_resource(unit_ids, weapon_ids, managers.dyn_resource.DYN_RESOURCES_PACKAGE) then
 			managers.dyn_resource:load(unit_ids, weapon_ids, managers.dyn_resource.DYN_RESOURCES_PACKAGE)
 		end

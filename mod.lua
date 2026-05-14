@@ -2,10 +2,24 @@ if not PickUpWeapons then
 	PickUpWeapons = {}
 	PickUpWeapons.mod_instance = ModInstance
 	PickUpWeapons.mod_path = ModPath
+	PickUpWeapons.save_path = SavePath .. "pickup_weapons.json"
 	PickUpWeapons.required = {}
+	PickUpWeapons.settings = {
+		distance = 200,
+		stealth_disabled = false
+	}
 	PickUpWeapons.weapon_table = blt.vm.dofile(ModPath .. "req/weapons.lua")
 
 	Hooks:Register("PickUpWeaponsCreateWeaponTable")
+
+	local data = io.file_is_readable(PickUpWeapons.save_path) and io.load_as_json(PickUpWeapons.save_path)
+	if data then
+		for k, v in pairs(data) do
+			if type(PickUpWeapons.settings[k]) == type(v) then
+				PickUpWeapons.settings[k] = v
+			end
+		end
+	end
 
 	function PickUpWeapons:create_pickup(weapon_unit, factory_id, weapon_id, weapon_data, total_ammo, clip_ammo, is_npc)
 		local weapon_base = weapon_unit:base()
@@ -113,6 +127,53 @@ if not PickUpWeapons then
 		if peer then
 			peer._has_pickup_weapons_interaction = PickUpWeapons.mod_instance:GetVersion() == data
 		end
+	end)
+
+	Hooks:Add("MenuManagerBuildCustomMenus", "MenuManagerBuildCustomMenusPickupWeapons", function(menu_manager, nodes)
+		local menu_id = "PickupWeaponsMenu"
+
+		MenuHelper:NewMenu(menu_id)
+
+		function MenuCallbackHandler:PickupWeapons_value(item)
+			PickUpWeapons.settings[item:name()] = item:value()
+		end
+
+		function MenuCallbackHandler:PickupWeapons_toggle(item)
+			PickUpWeapons.settings[item:name()] = item:value() == "on"
+		end
+
+		function MenuCallbackHandler:PickupWeapons_save()
+			io.save_as_json(PickUpWeapons.settings, PickUpWeapons.save_path)
+		end
+
+		MenuHelper:AddSlider({
+			id = "distance",
+			title = "menu_pw_distance",
+			desc = "menu_pw_distance_desc",
+			callback = "PickupWeapons_value",
+			value = PickUpWeapons.settings.distance,
+			min = 100,
+			max = 200,
+			step = 5,
+			show_value = true,
+			display_precision = 2,
+			display_scale = 0.01,
+			menu_id = menu_id,
+			priority = 1
+		})
+
+		MenuHelper:AddToggle({
+			id = "stealth_disabled",
+			title = "menu_pw_stealth_disabled",
+			desc = "menu_pw_stealth_disabled_desc",
+			callback = "PickupWeapons_toggle",
+			value = PickUpWeapons.settings.stealth_disabled,
+			menu_id = menu_id,
+			priority = 0
+		})
+
+		nodes[menu_id] = MenuHelper:BuildMenu(menu_id, { back_callback = "PickupWeapons_save" })
+		MenuHelper:AddMenuItem(nodes.blt_options, menu_id, "menu_pw")
 	end)
 end
 

@@ -16,6 +16,13 @@ function PickUpWeaponInteractionExt:_add_string_macros(macros)
 	macros.WEAPON = managers.localization:text(tweak_data.weapon[self.weapon_data.weapon_id].name_id)
 end
 
+function PickUpWeaponInteractionExt:interact_distance()
+	if PickUpWeapons.settings.stealth_disabled and managers.groupai and not managers.groupai:state():enemy_weapons_hot() then
+		return 0
+	end
+	return PickUpWeapons.settings.distance
+end
+
 function PickUpWeaponInteractionExt:interact(player)
 	if not self:can_interact(player) then
 		return
